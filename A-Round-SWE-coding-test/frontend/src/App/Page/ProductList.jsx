@@ -5,12 +5,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   //implement the get products function
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/products`);
+      const response = await axios.get(`http://localhost:5001/api/products`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -20,7 +19,7 @@ const ProductList = () => {
   const handleDelete = async (id) => {
     console.log("delete");
     try{
-      await axios.delete(`${API_BASE_URL}/api/products/${id}`);
+      await axios.delete(`http://localhost:5001/api/products/${id}`);
       setProducts(prevProducts => prevProducts.filter(p => p.id !== id));
     }catch(error){
       console.error(error);
